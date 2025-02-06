@@ -75,11 +75,11 @@ const createDropdownListPicture = (parent) => {
 const createGameField = (parent) => {
   const containerGameField = createElement('div', 'container-game-field', parent);
   createElement('div', 'corner', containerGameField);
-  const cluesVertical = createElement('div', 'clues-vertical', containerGameField);
-  const cluesHorizontal = createElement('div', 'clues-horizontal', containerGameField);
+  const hintsTop = createElement('div', 'hints-top', containerGameField);
+  const hintsLeft = createElement('div', 'hints-left', containerGameField);
   const gameField = createElement('div', 'game-field', containerGameField);
 
-  createMultipleElements(5, 'div', 'clue', cluesVertical);
-  createMultipleElements(5, 'div', 'clue', cluesHorizontal);
+  createMultipleElements(5, 'div', ['hint-top', 'hint'], hintsTop);
+  createMultipleElements(5, 'div', ['hint-left', 'hint'], hintsLeft);
   createMultipleElements(25, 'div', 'box', gameField);
 };
