@@ -1,0 +1,85 @@
+const createElement = (tag, className, parent = null, textContent = null) => {
+  const element = document.createElement(tag);
+
+  if (Array.isArray(className)) {
+    element.classList.add(...className);
+  } else {
+    element.classList.add(className);
+  }
+
+  if (textContent) {
+    element.textContent = textContent;
+  }
+
+  if (parent) {
+    parent.append(element);
+  }
+
+  return element;
+};
+
+const createMultipleElements = (num, tag, className, parent) => {
+  for (let i = 0; i < num; i++) {
+    createElement(tag, className, parent);
+  }
+};
+
+export const createWrapper = () => {
+  const body = document.querySelector('.body');
+  const wrapper = createElement('div', 'wrapper', body);
+
+  createHeader(wrapper);
+  createMain(wrapper);
+};
+
+const createHeader = (parent) => {
+  const header = createElement('header', 'header', parent);
+  createElement('h1', 'header__title', header, 'Nonograms Game');
+};
+
+const createMain = (parent) => {
+  const main = createElement('main', 'main', parent);
+
+  createRandomGameButton(main);
+  createContainerDropdownList(main);
+  createGameField(main);
+};
+
+const createRandomGameButton = (parent) => {
+  createElement('button', 'button-random', parent, 'Random Game');
+};
+
+const createContainerDropdownList = (parent) => {
+  const listsContainer = createElement('div', 'container-dropdown-list', parent);
+
+  createDropdownListLevel(listsContainer);
+  createDropdownListPicture(listsContainer);
+};
+
+const createDropdownListLevel = (parent) => {
+  const dropdownList = createElement('div', ['dropdown-list', 'list-levels'], parent);
+  const form = createElement('form', 'form', dropdownList);
+  const select = createElement('select', 'select', form);
+
+  createElement('option', 'option', select, 'easy 5x5');
+};
+
+const createDropdownListPicture = (parent) => {
+  const dropdownList = createElement('div', ['dropdown-list', 'list-pictures'], parent);
+  const form = createElement('form', 'form', dropdownList);
+  const select = createElement('select', 'select', form);
+
+  createMultipleElements(5, 'option', 'option', select);
+};
+
+const createGameField = (parent) => {
+  const containerGameField = createElement('div', 'container-game-field', parent);
+  createElement('div', 'corner', containerGameField);
+  const cluesVertical = createElement('div', 'clues-vertical', containerGameField);
+  const cluesHorizontal = createElement('div', 'clues-horizontal', containerGameField);
+  const gameField = createElement('div', 'game-field', containerGameField);
+
+  createMultipleElements(5, 'div', 'clue', cluesVertical);
+  createMultipleElements(5, 'div', 'clue', cluesHorizontal);
+  createMultipleElements(25, 'div', 'box', gameField);
+};
