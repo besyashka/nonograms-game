@@ -1,4 +1,4 @@
-const createElement = (tag, className, parent = null, textContent = null) => {
+export const createElement = (tag, className, parent = null, textContent = null) => {
   const element = document.createElement(tag);
 
   if (Array.isArray(className)) {
