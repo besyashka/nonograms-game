@@ -1,3 +1,5 @@
+import { toggleBoxActive } from './gameplay.js';
+
 export const createElement = (tag, className, parent = null, textContent = null) => {
   const element = document.createElement(tag);
 
@@ -82,4 +84,5 @@ const createGameField = (parent) => {
   createMultipleElements(5, 'div', ['hint-top', 'hint'], hintsTop);
   createMultipleElements(5, 'div', ['hint-left', 'hint'], hintsLeft);
   createMultipleElements(25, 'div', 'box', gameField);
+  toggleBoxActive(gameField);
 };
