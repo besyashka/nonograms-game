@@ -1,6 +1,5 @@
-import { toggleBoxActive } from './gameplay.js';
+import { toggleBoxActive, handleClickButtonRandom } from './gameplay.js';
 import { closeModal } from './modal.js';
-import { handleClickButtonRandom } from './gameplay.js';
 
 export const createElement = (tag, className, parent = null, textContent = null) => {
   const element = document.createElement(tag);
