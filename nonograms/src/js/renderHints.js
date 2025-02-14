@@ -1,5 +1,6 @@
 import { template } from './template.js';
 import { createElement } from './renderPage.js';
+import { setTemplateField } from './gameplay.js';
 
 // выбрать случайный шаблон для игры
 export const getRandomTemplate = () => {
@@ -9,6 +10,7 @@ export const getRandomTemplate = () => {
 
   renderHintsLeft(randomTemplate);
   renderHintsTop(randomTemplate);
+  setTemplateField(randomTemplate.field);
 };
 
 // добавить исловые подсказки слева
