@@ -1,4 +1,5 @@
 import { toggleBoxActive } from './gameplay.js';
+import { closeModal } from './modal.js';
 
 export const createElement = (tag, className, parent = null, textContent = null) => {
   const element = document.createElement(tag);
@@ -86,3 +87,14 @@ const createGameField = (parent) => {
   createMultipleElements(25, 'div', 'box', gameField);
   toggleBoxActive(gameField);
 };
+
+const generateModal = () => {
+  const overlay = createElement('div', 'overlay', document.querySelector('.body'));
+  const modalWrapper = createElement('div', 'modal__wrapper', document.querySelector('.body'));
+  createElement('h3', 'modal__title', modalWrapper, 'You have solved the nonogram!');
+  const buttonClose = createElement('button', 'modal__button-close', modalWrapper, 'Close');
+
+  closeModal(overlay, modalWrapper, buttonClose);
+};
+
+generateModal();
