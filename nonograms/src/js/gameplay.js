@@ -1,3 +1,5 @@
+import { openModal } from './modal.js';
+
 const gameCells = Array.from({ length: 5 }, () => Array(5).fill(0));
 let templateField = null;
 
@@ -26,4 +28,16 @@ const updateGameCells = (clickedBox, gameField) => {
   gameCells[row][col] = clickedBox.classList.contains('active') ? 1 : 0;
 
   checkGameWin();
+};
+
+const checkGameWin = () => {
+  for (let i = 0; i < templateField.length; i++) {
+    for (let j = 0; j < templateField[i].length; j++) {
+      if (templateField[i][j] === 1 && gameCells[i][j] === 0) {
+        return false;
+      }
+    }
+  }
+
+  openModal();
 };
