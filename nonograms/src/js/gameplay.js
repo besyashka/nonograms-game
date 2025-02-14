@@ -1,4 +1,5 @@
 import { openModal } from './modal.js';
+import { getRandomTemplate } from './renderHints.js';
 
 const gameCells = Array.from({ length: 5 }, () => Array(5).fill(0));
 let templateField = null;
@@ -40,4 +41,10 @@ const checkGameWin = () => {
   }
 
   openModal();
+};
+
+export const handleClickButtonRandom = (buttonRandom) => {
+  buttonRandom.addEventListener('click', () => {
+    getRandomTemplate();
+  });
 };

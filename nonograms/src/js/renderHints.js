@@ -18,6 +18,10 @@ const renderHintsLeft = (template) => {
   const hintsLeft = document.querySelectorAll('.hint-left');
   const templateField = template.field;
 
+  hintsLeft.forEach((hint) => {
+    hint.innerHTML = '';
+  });
+
   for (let row = 0; row < templateField.length; row++) {
     let counter = 0;
 
@@ -41,6 +45,10 @@ const renderHintsLeft = (template) => {
 const renderHintsTop = (template) => {
   const hintsTop = document.querySelectorAll('.hint-top');
   const templateField = template.field;
+
+  hintsTop.forEach((hint) => {
+    hint.innerHTML = '';
+  });
 
   for (let row = 0; row < templateField.length; row++) {
     let counter = 0;

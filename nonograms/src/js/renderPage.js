@@ -1,5 +1,6 @@
 import { toggleBoxActive } from './gameplay.js';
 import { closeModal } from './modal.js';
+import { handleClickButtonRandom } from './gameplay.js';
 
 export const createElement = (tag, className, parent = null, textContent = null) => {
   const element = document.createElement(tag);
@@ -49,7 +50,8 @@ const createMain = (parent) => {
 };
 
 const createRandomGameButton = (parent) => {
-  createElement('button', 'button-random', parent, 'Random Game');
+  const buttonRandom = createElement('button', 'button-random', parent, 'Random Game');
+  handleClickButtonRandom(buttonRandom);
 };
 
 const createContainerDropdownList = (parent) => {
