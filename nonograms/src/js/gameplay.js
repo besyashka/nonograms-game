@@ -1,5 +1,6 @@
 import { openModal } from './modal.js';
-import { getRandomTemplate } from './renderHints.js';
+import { template } from './template.js';
+import { renderHintsLeft, renderHintsTop } from './renderHints.js';
 
 const gameCells = Array.from({ length: 5 }, () => Array(5).fill(0));
 let templateField = null;
@@ -46,5 +47,54 @@ const checkGameWin = () => {
 export const handleClickButtonRandom = (buttonRandom) => {
   buttonRandom.addEventListener('click', () => {
     getRandomTemplate();
+  });
+};
+
+// выбрать случайный шаблон для игры
+export const getRandomTemplate = () => {
+  let index = Math.floor(Math.random() * template.length);
+  const randomTemplate = template[index];
+
+  renderHintsLeft(randomTemplate);
+  renderHintsTop(randomTemplate);
+  setTemplateField(randomTemplate.field);
+  selectTemplateOption(randomTemplate);
+};
+
+// Функция для выбора шаблона для игры
+export const chooseTemplateForGame = () => {
+  const selectTemplate = document.querySelector('.select-template');
+
+  if (selectTemplate) {
+    selectTemplate.addEventListener('change', handleTemplateSelection);
+  }
+};
+
+// Функция для выбора определенного шаблона из списка
+const selectTemplateOption = (randomTemplate) => {
+  const options = document.querySelectorAll('.template-option');
+
+  options.forEach((option) => {
+    if (option.textContent === randomTemplate.name) {
+      option.selected = true;
+    }
+  });
+};
+
+const handleTemplateSelection = () => {
+  const options = document.querySelectorAll('.template-option');
+
+  options.forEach((option) => {
+    if (option.selected) {
+      const selectedTemplateName = option.textContent;
+      const selectedTemplate = template.find((item) => item.name === selectedTemplateName);
+
+      if (selectedTemplate) {
+        renderHintsLeft(selectedTemplate);
+        renderHintsTop(selectedTemplate);
+        setTemplateField(selectedTemplate.field);
+        selectTemplateOption(selectedTemplate);
+      }
+    }
   });
 };
