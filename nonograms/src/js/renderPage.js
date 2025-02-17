@@ -1,5 +1,6 @@
 import { toggleBoxActive, handleClickButtonRandom } from './gameplay.js';
 import { closeModal } from './modal.js';
+import { template } from './template.js';
 
 export const createElement = (tag, className, parent = null, textContent = null) => {
   const element = document.createElement(tag);
@@ -73,7 +74,8 @@ const createDropdownListPicture = (parent) => {
   const form = createElement('form', 'form', dropdownList);
   const select = createElement('select', 'select', form);
 
-  createMultipleElements(5, 'option', 'option', select);
+  createMultipleElements(5, 'option', 'template-option', select);
+  updateTemplateOptions();
 };
 
 const createGameField = (parent) => {
@@ -96,6 +98,12 @@ const generateModal = () => {
   const buttonClose = createElement('button', 'modal__button-close', modalWrapper, 'Close');
 
   closeModal(overlay, modalWrapper, buttonClose);
+};
+
+const updateTemplateOptions = () => {
+  const options = document.querySelectorAll('.template-option');
+
+  options.forEach((item, i) => (item.textContent = template[i].name));
 };
 
 generateModal();
