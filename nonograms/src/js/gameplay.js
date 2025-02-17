@@ -46,6 +46,7 @@ const checkGameWin = () => {
 
 export const handleClickButtonRandom = (buttonRandom) => {
   buttonRandom.addEventListener('click', () => {
+    removeBoxActive();
     getRandomTemplate();
   });
 };
@@ -90,6 +91,7 @@ const handleTemplateSelection = () => {
       const selectedTemplate = template.find((item) => item.name === selectedTemplateName);
 
       if (selectedTemplate) {
+        removeBoxActive();
         renderHintsLeft(selectedTemplate);
         renderHintsTop(selectedTemplate);
         setTemplateField(selectedTemplate.field);
@@ -97,4 +99,9 @@ const handleTemplateSelection = () => {
       }
     }
   });
+};
+
+const removeBoxActive = () => {
+  const boxes = document.querySelectorAll('.box');
+  boxes.forEach((box) => box.classList.remove('active'));
 };
