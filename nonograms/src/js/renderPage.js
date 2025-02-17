@@ -72,7 +72,7 @@ const createDropdownListLevel = (parent) => {
 const createDropdownListPicture = (parent) => {
   const dropdownList = createElement('div', ['dropdown-list', 'list-pictures'], parent);
   const form = createElement('form', 'form', dropdownList);
-  const select = createElement('select', 'select', form);
+  const select = createElement('select', ['select', 'select-template'], form);
 
   createMultipleElements(5, 'option', 'template-option', select);
   updateTemplateOptions();
